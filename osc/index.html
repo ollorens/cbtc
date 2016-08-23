@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="es" ng-app="myApp">
+<head>
+
+	<meta charset="UTF-8">
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8_general_ci" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Club Baloncesto Tres Cantos</title>
+	<link rel="stylesheet" href="bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" href="content/css/app.css">
+    <!--<script type="text/javascript" src="js/jquery-1.3.2.js"></script>
+    <script type="text/javascript" src="js/jquery.galleriffic.js"></script>-->
+    <link rel="shortcut icon" href="cbtc.ico">
+    
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-71528419-1', 'auto');
+      ga('send', 'pageview');
+    </script>
+
+    
+</head>
+<!-- Fin de la cabecera -->
+
+    <!-- Go to www.addthis.com/dashboard to customize your tools -->
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-56391c0172dd637e" async="async"></script>
+
+<!-- Comienza el body -->
+<body>
+<!-- Comienzo Script Facebook -->
+    <div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5&appId=569974299738908";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+    
+<!-- Fin Script Facebook -->
+
+<header>
+<div ng-controller="AuthController as vm">   
+    <button class="button" ng-hide="vm.isLoggedIn()"><a href="#/login">login</a></button> <button class="button" ng-click="vm.logout()" ng-show="vm.isLoggedIn()">Logout</button>
+</div>
+<br />
+<div class="imagenesCabecera">
+    
+    <a href="#/"><img src="images/club/logoNuevo.png" alt="Logo Club Baloncesto Tres Cantos" class="img-responsive logo-club" title="Gracias voluntarios del 9 Torneo Memorial Pablo Barbadillo"></a>
+    <a href="#/inscripcionTemporada2016_2017"><img src="images/noticias/inscripcionTemporada2016-2017.jpeg" alt="Inscripción 2016/2017" title="Inscripción 2016/2017" class="img-responsive" style="max-width:400px"></a>
+    <a href="http://campusgigantes.com" target="_blank"><img src="images/Campus/campusGigantes2016.gif" alt="Campus Gigantes Verano 2016" class="img-responsive logo-gigantes" title="Campus de verano Gigantes" style="width: 120px"></a>   
+</div>
+
+<br>
+
+<!-- Barra de navegación con AngularJS -->
+
+<nav class="navbar navbar-default" ng-init="tab = 1">
+  
+  <div class="container-fluid">
+  <div class="navbar-header">
+    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-2" aria-expanded="true">
+      <span class="sr-only">Toggle navigation</span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+    <a class="navbar-brand" href="#/"><img src="images/club/banderinCBTC.png" alt="" style="height:auto !important; margin-top:-13px"></a>
+  </div>
+
+  <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
+
+    <ul class="nav navbar-nav">
+      <!-- Tab 1 -->
+      <li>
+        <a href="#/" ng-class="{active1: tab === 1}" class="first">Inicio</a>
+      </li>
+      <!-- Fin de Tab 1 -->
+
+      <!-- Tab 2 -->
+      <li class="dropdown">
+        <a href="" ng-class="{active2: tab === 2}" class="dropdown-toggle second" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Entrenadores<span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li><a href="#/entrenadores/introduccion" data-toggle="collapse" data-target="#bs-example-navbar-collapse-2" aria-expanded="true">Introducción</a></li>
+          <li><a href="#/entrenadores/planificacion" data-toggle="collapse" data-target="#bs-example-navbar-collapse-2" aria-expanded="true">Planificación</a></li>  
+        </ul>
+      </li>
+      <!-- Fin de Tab 2 -->
+
+      <!-- Tab 3 -->
+      <li><a href="#/proximosPartidos" ng-class="{active3: tab === 3}" class="third" data-toggle="collapse" data-target="#bs-example-navbar-collapse-2" aria-expanded="true">Próximos Partidos</a></li>
+      <!-- Fin de Tab 3 -->
+
+      <!-- Tab 4 -->
+      <li class="dropdown">
+        <a href="" class="dropdown-toggle fourth" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" ng-class="{active4: tab === 4}">Torneos<span class="caret"></span></a>
+        <ul class="dropdown-menu">
+            <li><a href="http://torneo9.cbtrescantos.es" target="_blank">9 Torneo Pablo Barbadillo (2016)</a></li>  
+            <li><a href="http://torneo8.cbtrescantos.es" target="_blank">8 Torneo Pablo Barbadillo (2015)</a></li>
+          <!--<li><a href="http://cbtrescantos.es/Default.aspx?alias=cbtrescantos.es/torneo7" target="_blank">7 Torneo Pablo Barbadillo (2014)</a></li>
+          <li><a href="http://cbtrescantos.es/Default.aspx?alias=cbtrescantos.es/torneo6" target="_blank">6 Torneo Pablo Barbadillo (2013)</a></li>-->
+        </ul>
+      </li>
+      <!-- Fin de Tab 4 -->
+
+      <!-- Tab 5 -->
+      <li class="dropdown">
+        <a href="" class="dropdown-toggle fifth" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" ng-class="{active5: tab === 5}">Equipos<span class="caret"></a>
+        <ul class="dropdown-menu">
+          <li><a href="#/equipos/20152016" data-toggle="collapse" data-target="#bs-example-navbar-collapse-2" aria-expanded="true">2015-2016</a></li>
+          <li><a href="#/equipos/20142015" data-toggle="collapse" data-target="#bs-example-navbar-collapse-2" aria-expanded="true">2014-2015</a></li>
+          <li><a href="#/equipos/20132014" data-toggle="collapse" data-target="#bs-example-navbar-collapse-2" aria-expanded="true">2013-2014</a></li>
+          <li><a href="#/equipos/20122013" data-toggle="collapse" data-target="#bs-example-navbar-collapse-2" aria-expanded="true">2012-2013</a></li>
+        </ul>
+      </li>
+      <!-- Fin de Tab 5 -->
+      
+      <!-- Tab 6 -->
+      <li>
+        <a href="#/noticias" ng-class="{active6: tab === 6}" class="sixth" data-toggle="collapse" data-target="#bs-example-navbar-collapse-2" aria-expanded="true">Noticias</a>
+      </li>
+      <!-- Fin de Tab 6 -->
+
+      <!-- Tab 7 -->
+      <li class="dropdown">
+        <a href="" class="dropdown-toggle seventh" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" ng-class="{active7: tab === 7}">Club <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+            <li><a href="#/historia" data-toggle="collapse" data-target="#bs-example-navbar-collapse-2" aria-expanded="true">Historia</a></li>
+            <li><a href="#/sedes" data-toggle="collapse" data-target="#bs-example-navbar-collapse-2" aria-expanded="true">Sedes</a></li>
+          <li role="separator" class="divider"></li>
+          <li><a href="#/asambleas" data-toggle="collapse" data-target="#bs-example-navbar-collapse-2" aria-expanded="true"><strong>Asambleas</strong></a></li>
+          <li><a href="assets/club/memoriaDeportiva/MemoriaDeportivaCBTresCantosTemporada20142015.pdf" target="_blank"><strong>Memoria Deportiva 14-15</strong></a></li>
+         <!-- <li role="separator" class="divider"></li>
+          <li><a href="#">lo que sea</a></li>-->
+        </ul>
+      </li>
+      <!-- Fin de Tab 7 -->
+
+      <!-- Tab 8
+      <li>
+        <a href="#/cronicas" ng-class="{active8: tab === 8}" class="eighth">Crónicas</a>
+      </li>
+      <!-- Fin de Tab 8 -->
+
+    </ul>
+  </div>
+</nav>
+<!-- Fin de barra de navegación con AngularJS -->
+
+<!-- Button trigger modal
+<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+  Launch demo modal
+</button>-->
+
+<!-- Modal
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h1 class="modal-title" id="myModalLabel" style="text-align: center">Inscripción Temporada 2016-2017 </h1>
+      </div>
+      <div class="modal-body">
+          <p>Estimado socio/a: </p>
+          <p><strong>Por la presente les informamos que aquellos que no hayan formalizado la inscripción podrán hacerlo descargándose la <a href="#/inscripcionTemporada2016_2017">hoja de inscripción</a> y mandarla debidamente cumplimentada conjuntamente con fotocopia del DNI del jugador y foto del mismo en formato jpg al siguiente correo:</strong></p>
+          <p><strong>administracion@cbtrescantos.es</strong></p>
+          <p><strong>El abono de la cuota de socio familiar se realizara mediante recibo bancario en la cuenta asignada en la hoja de inscripción.</strong></p>
+          <p>FECHA LIMITE 30 DE JUNIO DE 2016</p>
+          <p>Junta Directiva</p>
+          <img src="images/club/logoNuevo.png" alt="" style="width:150px" class="img-responsive" title="Logo CB Tres Cantos">
+      </div>
+      <div class="modal-footer">
+        <a href="#/campeonesFEB2016" class="btn btn-default" role="button" style="margin-left: 20px" data-dismiss="modal">Cerrar</a>-->
+
+        <!--<button class="btn btn-warning" role="button"><a href="#/05"  onclick="$('#myModal').modal('hide')">Leer Más</a></button>-->
+      <!--</div>
+    </div>
+  </div>
+</div>-->
+</header>
+    <!-- Fin de la cabecera -->
+<br>
+
+<!-- Vista-->
+<div class="container">
+
+    <div ng-view class="row" autoscroll="true">
+    
+    </div>
+
+</div>
+<!--Vista-->
+
+<!-- Colaboradores -->
+    
+<div class="container container2">
+    <div class="row">       
+        <div class="col-xs-4 col-md-3">
+            <a href="http://www.trescantos.es" target="_blank"><img src="images/club/patrocinadores/ayuntamiento.png" alt="Ayuntamiento de Tres Cantos" class="img-responsive" style="margin:0 auto;"/></a>
+        </div>
+        <div class="col-xs-4 col-md-2">
+            <a href="http://www.fbm.es" target="_blank"><img src="images/club/patrocinadores/fbm.png" alt="Federación de Baloncestos de Madrid" class="img-responsive" style="margin:0 auto;"/></a>
+        </div>
+        <div class="col-xs-4 col-md-2">
+            <a href="http://www.asecatc.es" target="_blank"><img src="images/club/patrocinadores/asecatc.png" alt="ASECATC" class="img-responsive" style="margin:0 auto;"/></a>
+        </div>
+        <div class="col-xs-6 col-md-2">
+            <a href="http://deporteszaguero.com/" target="_blank"><img src="images/club/patrocinadores/zaguero.png" alt="Deportes Zaguero" class="img-responsive" style="margin:0 auto; padding: 15px"/></a>
+        </div>
+        <div class="col-xs-6 col-md-3">
+            <a href="http://www.boletintricantino.com/" target="_blank"><img src="images/club/patrocinadores/boletinTricantino.png" alt="Boletín Tricantino" class="img-responsive" style="margin:0 auto; padding: 15px"/></a>
+        </div>        
+    </div>    
+</div>
+    
+<!-- Fin de colaboradores -->
+
+<br>
+    <hr>
+    
+    <!--<div class="container">
+        <h2>Foto oficial del Club Temporada 2015-2016</h2>
+        <div class="row">
+            <div class="">
+                <img src="images/club/20152016/FotoOficialCBTC20152016.jpg" alt="Foto Oficial del Club de Baloncesto Tres Cantos Temporada 2015-2016" class="img-responsive">-->
+                <!-- Go to www.addthis.com/dashboard to customize your tools -->
+                <!--<div class="addthis_sharing_toolbox"></div>
+            </div>
+        </div>
+        </div>-->
+    
+<div class="container">
+    <div style="text-align: center"><h1 class="bg-primary">Redes Sociales</h1></div>
+<br>
+
+    <div class="row">
+        <div class="col-sm-6 col-md-6">
+            <h1>Twitter</h1>
+            <a class="twitter-timeline" data-dnt="true" href="https://twitter.com/search?q=%40CBTresCantos" data-widget-id="324920663552966658">Tweets sobre @CBTresCantos</a>
+            <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>     
+        </div>
+
+        <div class=" col-sm-6 col-md-6">
+
+            <h1>Facebook</h1>
+                <div class="fb-page" data-href="https://www.facebook.com/BaloncestoTresCantos/" data-tabs="timeline" data-max-width="500" data-height="550" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="false"><div class="fb-xfbml-parse-ignore"><blockquote cite="https://www.facebook.com/BaloncestoTresCantos/"><a href="https://www.facebook.com/BaloncestoTresCantos/">Baloncesto Tres Cantos</a></blockquote></div></div>
+        </div>
+    </div>
+</div>
+<br><br>
+
+<div class="panel-footer"> 
+    
+   <div class="row">
+       <div class="col-md-4">
+           <h1 style="text-align: center">Contacto</h1>
+               <span style="display: block"><strong>Junta Directiva: </strong></span>
+               <ul><li><span style="display: block"><a href="mailto:juntadirectiva@cbtrescantos.es" target="_top">JuntaDirectiva@cbtrescantos.es</a></span></li></ul>
+               
+               <span style="display: block"><strong>Director Técnico: </strong></span>
+               <span style="display: block">
+                   <ul><li><a href="mailto:directortecnico@cbtrescantos.es">directortecnico@cbtrescantos.es</a></li></ul>
+                   </span>
+               <span style="display: block"><strong>Administración: </strong></span>
+            <span style="display: block">
+                <ul><li><a href="mailto:administracion@cbtrescantos.es">administracion@cbtrescantos.es</a></li></ul>
+                </span>
+       </div>
+       <div class="col-md-4">
+           <h1 style="text-align: center">¿Dónde estamos?</h1>
+           <p style="text-align: center"><strong>Polideportivo de La Luz (Sede del Club)</strong></p>
+           <p><address  style="text-align: center">Avda. de la Luz, 6</address></p>
+           <p><address  style="text-align: center">28760 - Tres Cantos</address></p>
+           <p style="text-align: center"><abbr title="phone">Teléfono: 918039284</abbr></p>
+           
+       </div>
+       <div class="col-md-4">
+           
+       </div>
+   </div>
+   <p style="text-align:center; color: #666;"><span style="font-style: italic; font-size: 10px">© Club Baloncesto Tres Cantos</span><span style="font-size:10px"> | </span><span style="font-style: italic; font-size: 10px">@cbtrescantos</span></p>
+</div>
+
+	<!-- Third Party JS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+     <script src="bootstrap/js/bootstrap.min.js"></script>   
+    <script src="https://code.angularjs.org/1.4.7/angular.js"></script>
+    <script src="https://code.angularjs.org/1.4.7/angular-route.min.js"></script>
+
+
+    
+   <script src="js/ui-bootstrap-tpls-0.14.3.min.js"></script>
+
+    <!-- Firebase -->
+    <script src="https://cdn.firebase.com/js/client/2.2.4/firebase.js"></script>
+    <!-- AngularFire -->
+    <script src="https://cdn.firebase.com/libs/angularfire/1.2.0/angularfire.min.js"></script>
+    
+    <!--Main App Module-->
+    <script src="app.js"></script>
+    
+    <!--Main Page module-->
+    <script src="main/main.module.js"></script>
+    <script src="main/config.route.js"></script>
+     
+    <!--Próximos Partidos Module.-->
+    <script src="proximosPartidos/proximosPartidos.module.js"></script>
+    <script src="proximosPartidos/config.route.js"></script>
+    
+    <!--Equipos module-->
+    <script src="equipos/equipos.module.js"></script>
+    <script src="equipos/config.route.js"></script>
+    
+    <!--Entrenadores Module-->
+    <script src="entrenadores/entrenadores.module.js"></script>
+    <script src="entrenadores/config.route.js"></script>
+    
+    <!--Club module-->
+    <script src="club/club.module.js"></script>
+    <script src="club/config.route.js"></script>
+    
+    <!--Crónicas-->
+    <script src="cronicas/cronicas.module.js"></script>
+    <script src="cronicas/config.route.js"></script>
+    
+    <!--Next Games module
+    <script src="nextgames/nextgames.module.js"></script>
+    <script src="nextgames/config.route.js"></script>
+    <script src="nextgames/nextgames.controller.js"></script>-->
+    
+    <!--Core module-->
+    <script src="app/core/core.module.js"></script>
+    <script src="app/core/constants.js"></script>
+    <script src="app/core/firebaseData.service.js"></script>
+    
+    <!--Noticias Module-->
+    <script src="noticias/noticias.module.js"></script>
+    <script src="noticias/config.route.js"></script>
+    
+    <!--Formulario Module-->
+    <script src="formulario/formulario.module.js"></script>
+    <script src="formulario/config.route.js"></script>
+    <script src="formulario/formulario.controller.js"></script>
+
+    <!--Socios module-->
+    <script src="socios/socios.module.js"></script>
+    <script src="socios/config.route.js"></script>
+    <script src="socios/socios.controller.js"></script>
+    
+    <!-- Script Ventana Modal-->    
+    <script>
+        $(document).ready(function(){ 
+            $('#myModal').modal('show');
+        });
+    </script>
+    
+    <!--Auth module-->
+    <script src="app/auth/auth.module.js"></script>
+    <script src="app/auth/config.route.js"></script>
+    <script src="app/auth/auth.controller.js"></script>
+    <script src="app/auth/auth.service.js"></script>
+    
+    <!--Próximos Partidos
+    <script src="proximosPartidos/proximosPartidos.module.js"></script>
+    <script src="proximosPartidos/config.route.js"></script>
+    <script src="proximosPartidos/proximosPartidos.controller.js"></script>-->
+
+</body>
+</html>
